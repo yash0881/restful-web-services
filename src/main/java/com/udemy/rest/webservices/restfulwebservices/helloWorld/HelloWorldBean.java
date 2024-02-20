@@ -3,6 +3,10 @@ package com.udemy.rest.webservices.restfulwebservices.helloWorld;
 public class HelloWorldBean {
 
     private String message;
+    public HelloWorldBean(String message) {
+        this.message = message;
+    }
+
 
     public String getMessage() {
         return message;
@@ -17,9 +21,5 @@ public class HelloWorldBean {
         return "HelloWorldBean{" +
                 "message='" + message + '\'' +
                 '}';
-    }
-
-    public HelloWorldBean(String message) {
-        this.message = message;
     }
 }
