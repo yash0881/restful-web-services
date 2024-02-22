@@ -10,9 +10,9 @@ import java.util.List;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @RestController
-public class UserResource {
+public class UserResourceController {
     private UserDaoService service;
-    public UserResource(UserDaoService service){
+    public UserResourceController(UserDaoService service){
         this.service=service;
     }
     @GetMapping(path = "/users")
@@ -40,4 +40,5 @@ public class UserResource {
     public User deleteUserById(@PathVariable int id){
         return service.deleteUser(id);
     }
+
 }

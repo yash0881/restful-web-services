@@ -1,17 +1,19 @@
 package com.udemy.rest.webservices.restfulwebservices.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
 import org.hibernate.annotations.BatchSize;
+import org.hibernate.annotations.ManyToAny;
 
 import java.time.LocalDate;
+import java.util.List;
 
 
+// by using @Entity annotation we can tell JPA to manage our class
 @Entity(name = "user_details")
 public class User {
 
@@ -27,6 +29,15 @@ public class User {
     @Past
     @JsonProperty("birth_date")
     private LocalDate birthDate;
+
+    @OneToMany(mappedBy = "user")
+    @JsonIgnore
+    private List<Post> post;
+
+
+    protected User(){
+
+    }
 
     public User(Integer id, String name, LocalDate birthDate) {
         this.id = id;
@@ -56,6 +67,14 @@ public class User {
 
     public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
+    }
+
+    public List<Post> getPost() {
+        return post;
+    }
+
+    public void setPost(List<Post> post) {
+        this.post = post;
     }
 
     @Override
